@@ -914,6 +914,20 @@ const computeImageDimensions = (vNode, attributes) => {
   attributes.height = modifiedHeight;
 };
 
+const buildCheckBox = async (vNode) => {
+  return fragment({ namespaceAlias: { w: namespaces.w } })
+    .ele('@w', 'p', { 'xmlns:w': namespaces.w })
+      .ele('@w', 'fldSimple').att('@w', 'instr', 'FORMCHECKBOX')
+        .ele('@w', 'r')
+          .ele('@w', 'rPr')
+            .ele('@w', 'rFonts').att('@w', 'ascii', 'Wingdings').att('@w', 'hAnsi', 'Wingdings').up()
+          .up()
+          .ele('@w', 't').txt('o').up()
+        .up()
+      .up()
+    .up();
+};
+
 const buildParagraph = async (vNode, attributes, docxDocumentInstance) => {
   const paragraphFragment = fragment({ namespaceAlias: { w: namespaces.w } }).ele('@w', 'p');
   const modifiedAttributes = modifiedStyleAttributesBuilder(
@@ -2167,6 +2181,7 @@ const buildDrawing = (inlineOrAnchored = false, graphicType, attributes) => {
 
 export {
   buildParagraph,
+  buildCheckBox,
   buildTable,
   buildNumberingInstances,
   buildLineBreak,

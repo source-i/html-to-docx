@@ -235,6 +235,13 @@ async function findXMLEquivalent(docxDocumentInstance, vNode, xmlFragment) {
       const paragraphFragment = await xmlBuilder.buildParagraph(vNode, {}, docxDocumentInstance);
       xmlFragment.import(paragraphFragment);
       return;
+    case 'input':
+      if (vNode.properties.type === 'checkbox') {
+        console.log({ vNode });
+        const checkBoxFragment = await xmlBuilder.buildCheckBox(vNode);
+        xmlFragment.import(checkBoxFragment);
+      }
+      return;
     case 'figure':
       if (vNodeHasChildren(vNode)) {
         // eslint-disable-next-line no-plusplus
