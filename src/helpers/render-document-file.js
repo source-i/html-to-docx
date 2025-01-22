@@ -237,8 +237,7 @@ async function findXMLEquivalent(docxDocumentInstance, vNode, xmlFragment) {
       return;
     case 'input':
       if (vNode.properties.type === 'checkbox') {
-        console.log({ vNode });
-        const checkBoxFragment = await xmlBuilder.buildCheckBox(vNode);
+        const checkBoxFragment = await xmlBuilder.buildCheckBox();
         xmlFragment.import(checkBoxFragment);
       }
       return;
